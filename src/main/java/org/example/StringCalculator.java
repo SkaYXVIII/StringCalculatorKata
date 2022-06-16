@@ -20,6 +20,7 @@ public class StringCalculator {
         checkIfNotContainsNegatives(separatedNumbers);
 
         return Arrays.stream(separatedNumbers)
+                .filter(v -> v <= 1000)
                 .sum();
     }
 
@@ -35,8 +36,8 @@ public class StringCalculator {
                 .toArray();
     }
 
-    private String getOptionalDelimiterAndReturnNumbersWithoutOddLine(String numbers){
-        if (numbers.startsWith("//")){
+    private String getOptionalDelimiterAndReturnNumbersWithoutOddLine(String numbers) {
+        if (numbers.startsWith("//")) {
             int endIndexOfDelimiter = numbers.indexOf("\n");
             delimiters += numbers.substring(2, endIndexOfDelimiter);
             return numbers.substring(endIndexOfDelimiter + 1);
@@ -44,9 +45,9 @@ public class StringCalculator {
         return numbers;
     }
 
-    private void checkIfNotContainsNegatives(int[] numbers){
-        int[] negativeNumbers = Arrays.stream(numbers).filter(v -> v<0).toArray();
-        if(negativeNumbers.length > 0){
+    private void checkIfNotContainsNegatives(int[] numbers) {
+        int[] negativeNumbers = Arrays.stream(numbers).filter(v -> v < 0).toArray();
+        if (negativeNumbers.length > 0) {
             StringBuilder negativesMsg = new StringBuilder();
             Arrays.stream(negativeNumbers).forEach(negativesMsg::append);
             throw new IllegalArgumentException("negatives not Allowed! cause: " + negativesMsg);

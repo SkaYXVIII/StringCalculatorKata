@@ -40,13 +40,13 @@ class StringCalculatorTest {
     }
 
     @Test
-    void addNumbersWithMultipleDelimiters(){
+    void addNumbersWithMultipleDelimiters() {
         assertEquals(6, stringCalculator.Add("1\n2,3"));
         assertEquals(1, stringCalculator.Add("1,\n"));
     }
 
     @Test
-    void addNumbersWithOptionalDelimiter(){
+    void addNumbersWithOptionalDelimiter() {
         assertEquals(3, stringCalculator.Add("//;\n1;2"));
         assertEquals(3, stringCalculator.Add("//;+\n1;+2"));
         assertEquals(6, stringCalculator.Add("//;+\n1;2+3"));
@@ -54,11 +54,18 @@ class StringCalculatorTest {
     }
 
     @Test
-    void addWithNegatives(){
+    void addWithNegatives() {
         IllegalArgumentException thrown = Assertions
                 .assertThrows(IllegalArgumentException.class, () -> {
                     stringCalculator.Add("1,-2,-3,4,-6");
                 });
-        assertEquals("negatives not Allowed! cause: -2-3-6",thrown.getMessage());
+        assertEquals("negatives not Allowed! cause: -2-3-6", thrown.getMessage());
+    }
+
+    @Test
+    void addWithNumbersBiggerThan1000() {
+        assertEquals(2, stringCalculator.Add("2,1001"));
+        assertEquals(1002, stringCalculator.Add("2,1000"));
+        assertEquals(1002, stringCalculator.Add("2,1001,1000,2137"));
     }
 }
