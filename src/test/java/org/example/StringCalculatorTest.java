@@ -1,5 +1,6 @@
 package org.example;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -11,7 +12,6 @@ class StringCalculatorTest {
     @Test
     void addTwoCorrectNumbers() {
         assertEquals(3, stringCalculator.Add("1,2"));
-        assertEquals(-1, stringCalculator.Add("1,-2"));
     }
 
     @Test
@@ -51,5 +51,14 @@ class StringCalculatorTest {
         assertEquals(3, stringCalculator.Add("//;+\n1;+2"));
         assertEquals(6, stringCalculator.Add("//;+\n1;2+3"));
         assertEquals(6, stringCalculator.Add("//\n1,2\n3"));
+    }
+
+    @Test
+    void addWithNegatives(){
+        IllegalArgumentException thrown = Assertions
+                .assertThrows(IllegalArgumentException.class, () -> {
+                    stringCalculator.Add("1,-2,-3,4,-6");
+                });
+        assertEquals("negatives not Allowed! cause: -2-3-6",thrown.getMessage());
     }
 }

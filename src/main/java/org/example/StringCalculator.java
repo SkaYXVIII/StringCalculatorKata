@@ -17,6 +17,8 @@ public class StringCalculator {
             throw new NumberFormatException("Only Integers type accepted! example: (\"1,2\")");
         }
 
+        checkIfNotContainsNegatives(separatedNumbers);
+
         return Arrays.stream(separatedNumbers)
                 .sum();
     }
@@ -40,5 +42,14 @@ public class StringCalculator {
             return numbers.substring(endIndexOfDelimiter + 1);
         }
         return numbers;
+    }
+
+    private void checkIfNotContainsNegatives(int[] numbers){
+        int[] negativeNumbers = Arrays.stream(numbers).filter(v -> v<0).toArray();
+        if(negativeNumbers.length > 0){
+            StringBuilder negativesMsg = new StringBuilder();
+            Arrays.stream(negativeNumbers).forEach(negativesMsg::append);
+            throw new IllegalArgumentException("negatives not Allowed! cause: " + negativesMsg);
+        }
     }
 }
