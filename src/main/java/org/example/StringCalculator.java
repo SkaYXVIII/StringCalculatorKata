@@ -22,8 +22,6 @@ public class StringCalculator {
     private int[] convertToIntegers(String numbers) throws NumberFormatException {
         var separatedNumbers = numbers.split(",");
 
-        if (separatedNumbers.length > 2)
-            throw new IllegalArgumentException("Only 2 numbers permitted");
         return Arrays.stream(separatedNumbers)
                 .map(v -> v.replaceAll("\\s", ""))
                 .filter(v -> !v.isBlank())

@@ -28,9 +28,8 @@ class StringCalculatorTest {
 
     @Test
     void addMoreThanTwoNumbers() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            stringCalculator.Add("1,2,3");
-        });
+        assertEquals(6, stringCalculator.Add("1,2,3"));
+        assertEquals(55, stringCalculator.Add("1,2,3,4,5,6,7,8,9,10"));
     }
 
     @Test
