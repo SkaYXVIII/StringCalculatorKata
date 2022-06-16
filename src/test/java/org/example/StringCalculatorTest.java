@@ -38,4 +38,10 @@ class StringCalculatorTest {
             stringCalculator.Add("1, two");
         });
     }
+
+    @Test
+    void addNumbersWithMultipleDelimiters(){
+        assertEquals(6, stringCalculator.Add("1\n2,3"));
+        assertEquals(1, stringCalculator.Add("1,\n"));
+    }
 }

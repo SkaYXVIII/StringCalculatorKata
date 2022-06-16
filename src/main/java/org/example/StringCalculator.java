@@ -20,7 +20,7 @@ public class StringCalculator {
     }
 
     private int[] convertToIntegers(String numbers) throws NumberFormatException {
-        var separatedNumbers = numbers.split(",");
+        var separatedNumbers = numbers.split("[,\n]");
 
         return Arrays.stream(separatedNumbers)
                 .map(v -> v.replaceAll("\\s", ""))
