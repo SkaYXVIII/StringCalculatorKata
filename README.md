@@ -1,5 +1,8 @@
 # StringCalculatorKata
+
 String Calculator Kata
+https://kata-log.rocks/string-calculator-kata
+
 
 How to run:
 
